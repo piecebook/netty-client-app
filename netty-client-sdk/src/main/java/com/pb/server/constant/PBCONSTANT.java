@@ -10,6 +10,9 @@ public class PBCONSTANT {
     public static final byte MESSAGE_REPLY_FLAG = 21;
     public static final byte LOGOUT_FLAG = 3;
     public static final byte ACK_FLAG = 5;
+    public static final byte ADD_FRIENDS_FLAG = 7 ;
+    public static final byte ADD_FRIENDS_ACK_FLAG = 71;
+    public static final byte ADD_FRIENDS_MSG_ACK_FLAG = 72;
 
 
     public static final String ACK = "ack";

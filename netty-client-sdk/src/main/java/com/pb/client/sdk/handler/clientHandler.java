@@ -8,8 +8,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
 
 public class clientHandler extends SimpleChannelInboundHandler<Message> {
     private MessageHandler messageHandler = new MessageHandler();
+    private FriendsHandler friendsHandler = new FriendsHandler();
     /*@Override
-	public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
+    public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
 			throws Exception {
 		if (evt instanceof IdleStateEvent) {
 			IdleStateEvent idle = (IdleStateEvent) evt;
@@ -39,6 +40,8 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Message msg)
             throws Exception {
+        PBSession session = new PBSession();
+        session.setSession(ctx.channel());
         switch (msg.getType()) {
             case PBCONSTANT.LOGIN_REPLY_FLAG:
                 if (msg.get("st").equals("sc")) {
@@ -55,9 +58,15 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
                         + msg.get("st"));
                 break;
             case PBCONSTANT.MESSAGE_FLAG:
-                PBSession session = new PBSession();
-                session.setSession(ctx.channel());
                 messageHandler.process(session, msg);
+                break;
+            case PBCONSTANT.ADD_FRIENDS_FLAG:
+                friendsHandler.process(session, msg);
+                break;
+            case PBCONSTANT.ADD_FRIENDS_ACK_FLAG:
+                friendsHandler.process(session, msg);
+                break;
+            case PBCONSTANT.ADD_FRIENDS_MSG_ACK_FLAG:
                 break;
             default:
         }

@@ -41,6 +41,17 @@ public class Main {
             }
         };
         friends.addMouseListener(mouseListener);
+        add_friend.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JFrame frame = new JFrame("SearchFriend");
+                SearchFriend searchFriend = new SearchFriend();
+                frame.setContentPane(searchFriend.getSearchform_panel());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
     }
 
     public static void main(String[] args) {

@@ -3,12 +3,14 @@ package com.pb.client.form.ui;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Login_Dialog extends JDialog {
+public class SysMsgDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
+    private JLabel msg_l;
 
-    public Login_Dialog() {
+    public SysMsgDialog(String msg) {
+        msg_l.setText(msg);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -52,7 +54,7 @@ public class Login_Dialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        Login_Dialog dialog = new Login_Dialog();
+        SysMsgDialog dialog = new SysMsgDialog("hello");
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

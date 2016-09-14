@@ -7,14 +7,20 @@ import com.pb.client.sdk.model.Friend;
 import com.pb.client.sdk.model.MsgPipe;
 import com.pb.client.sdk.nettyClient;
 import com.pb.server.constant.PBCONSTANT;
+import com.pb.server.model.Message;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.concurrent.LinkedBlockingQueue;
+
+import static com.pb.client.sdk.model.MsgPipe.rec_msg;
 
 /**
  * Created by piecebook on 2016/9/14.
  */
 public class ClientStart {
+    private static Main _main = new Main();
+
     public static void main(String[] args) {
         nettyClient client = new nettyClient();
         MsgPipe.session = client.getSession();
@@ -50,7 +56,6 @@ public class ClientStart {
     }
 
     private static void main_form() {
-        Main _main = new Main();
         JFrame frame = new JFrame("Main");
         frame.setContentPane(_main.getMain_panel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,5 +76,51 @@ public class ClientStart {
             MsgPipe.friends.put(friend.getUid(), friend);
         }
         _main.getFriends().setModel(models);
+    }
+
+    private void addfriend(String uid, String sid) {
+        Friend friend = new Friend();
+        friend.setUid(uid);
+        friend.setSid(Long.parseLong(sid));
+        DefaultListModel models = (DefaultListModel) _main.getFriends().getModel();
+        models.addElement(uid);
+        MsgPipe.friends_win.put(uid, 0);
+        MsgPipe.friends.put(uid, friend);
+    }
+
+    public void run() {
+        LinkedBlockingQueue<Message> msg_list = rec_msg.get(PBCONSTANT.SYSTEM);
+        if (msg_list == null) msg_list = new LinkedBlockingQueue<Message>();
+        rec_msg.put(PBCONSTANT.SYSTEM, msg_list);
+        while (true) {
+            Message rec_msg = null;
+            try {
+                rec_msg = msg_list.take();
+                switch (rec_msg.getType()) {
+                    case PBCONSTANT.ADD_FRIENDS_FLAG:
+                        Add_Friend_Dialog dialog = new Add_Friend_Dialog(rec_msg.get("s_uid"), rec_msg.getType());
+                        dialog.pack();
+                        dialog.setVisible(true);
+                        break;
+                    case PBCONSTANT.ADD_FRIENDS_ACK_FLAG:
+                        String str = rec_msg.get("msg");
+                        if (str == null) {
+                            Add_Friend_Dialog dialog2 = new Add_Friend_Dialog(rec_msg.get("s_uid"), rec_msg.getType());
+                            dialog2.pack();
+                            dialog2.setVisible(true);
+                            break;
+                        } else {
+                            if (str.equals("sc")) {
+                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "已同意添加你为好友！");
+                                addfriend(rec_msg.get("s_uid"), rec_msg.get("msg"));
+                            } else {
+                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "拒绝添加你为好友！");
+                            }
+                        }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
