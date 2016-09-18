@@ -44,14 +44,16 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
         session.setSession(ctx.channel());
         switch (msg.getType()) {
             case PBCONSTANT.LOGIN_REPLY_FLAG:
-                if (msg.get("st").equals("sc")) {
+                String result = msg.get("st");
+                if (result.equals("sc")) {
                     System.out.println("Login Success!");
                     PBCONSTANT.id = msg.get("id");
                     PBCONSTANT.user = msg.get("r_uid");
                     PBCONSTANT.flag = 1;
-                } else {
+                } else if(result.equals("unfound")){
                     PBCONSTANT.flag = -1;
-                }
+                }else
+                    PBCONSTANT.flag = -2;
                 break;
             case PBCONSTANT.MESSAGE_REPLY_FLAG:
                 System.out.println("From " + msg.get("s_uid") + " :"
