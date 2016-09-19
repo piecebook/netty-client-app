@@ -14,7 +14,7 @@ public class nettyClient {
     private static final int PORT = 8000;
     //TODO: HOST地址
     //private static final String HOST = "123.207.120.73";
-    private static final String HOST = "127.0.0.1";
+    private static final String HOST = PBCONSTANT.HOST;
 
     public SocketChannel getSession(){
         BootStrapClient client = new BootStrapClient();

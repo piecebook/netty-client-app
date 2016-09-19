@@ -3,6 +3,7 @@ package com.pb.server.constant;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PBCONSTANT {
+    public static final String HOST = "";
     public static AtomicInteger msg_id = new AtomicInteger(1);
     public static final byte LOGIN_FLAG = 1;
     public static final byte LOGIN_REPLY_FLAG = 11;
@@ -10,7 +11,7 @@ public class PBCONSTANT {
     public static final byte MESSAGE_REPLY_FLAG = 21;
     public static final byte LOGOUT_FLAG = 3;
     public static final byte ACK_FLAG = 5;
-    public static final byte ADD_FRIENDS_FLAG = 7 ;
+    public static final byte ADD_FRIENDS_FLAG = 7;
     public static final byte ADD_FRIENDS_ACK_FLAG = 71;
     public static final byte ADD_FRIENDS_MSG_ACK_FLAG = 72;
 
@@ -38,5 +39,19 @@ public class PBCONSTANT {
         int id = msg_id.getAndIncrement();
         if (id > (1 << 15)) msg_id.set(0);
         return id;
+    }
+
+    static {
+        String env = System.getProperty("env");
+        if (env.equals("dev")) {
+            PBCONSTANT.HOST.concat("127.0.0.1");
+        } else if (env.equals("deploy")) {
+            PBCONSTANT.HOST.concat("123.207.120.73");
+        } else if (env.equals("dev_note")) {
+            PBCONSTANT.HOST.concat("125.216.250.85");
+        } else {
+            System.out.println("未知环境！");
+            System.exit(-1);
+        }
     }
 }

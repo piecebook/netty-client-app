@@ -3,9 +3,11 @@ package com.pb.client.form.ui;
 import com.alibaba.fastjson.JSONObject;
 import com.pb.client.sdk.MsgDeamon;
 import com.pb.client.sdk.http.FriendsHttp;
+import com.pb.client.sdk.http.MsgHttp;
 import com.pb.client.sdk.model.Friend;
 import com.pb.client.sdk.model.MsgPipe;
 import com.pb.client.sdk.nettyClient;
+import com.pb.client.sdk.util.MsgUtil;
 import com.pb.server.constant.PBCONSTANT;
 import com.pb.server.model.Message;
 
@@ -51,11 +53,15 @@ public class ClientStart {
                 return;
             } else if (PBCONSTANT.flag == -1) {
                 PBCONSTANT.flag = 0;
-                login_form.getPwd().setText("用户不存在！");
+                SysMsgDialog sysMsgDialog = new SysMsgDialog("用户不存在！");
+                sysMsgDialog.pack();
+                sysMsgDialog.setVisible(true);
                 return;
             } else if (PBCONSTANT.flag == -2) {
                 PBCONSTANT.flag = 0;
-                login_form.getPwd().setText("密码错误！");
+                SysMsgDialog sysMsgDialog = new SysMsgDialog("密码错误!");
+                sysMsgDialog.pack();
+                sysMsgDialog.setVisible(true);
                 return;
             }
         }
@@ -83,6 +89,14 @@ public class ClientStart {
             MsgPipe.friends.put(friend.getUid(), friend);
         }
         _main.getFriends().setModel(models);
+
+
+        MsgHttp msgHttp = new MsgHttp();
+        List<JSONObject> msg_objs = msgHttp.getOfflineMsg(PBCONSTANT.id, PBCONSTANT.user);
+        List<Message> msgs = MsgUtil.buildMsgMulti(msg_objs);
+        for (Message msg : msgs) {
+            MsgPipe.sendMsg(msg);
+        }
     }
 
     private static void addfriend(String uid, String sid) {
