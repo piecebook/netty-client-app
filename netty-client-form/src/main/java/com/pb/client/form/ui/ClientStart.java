@@ -32,6 +32,8 @@ public class ClientStart {
         }
         main_form();
 
+        run();
+
     }
 
 
@@ -49,7 +51,11 @@ public class ClientStart {
                 return;
             } else if (PBCONSTANT.flag == -1) {
                 PBCONSTANT.flag = 0;
-                login_form.getPwd().setText("登录失败！");
+                login_form.getPwd().setText("用户不存在！");
+                return;
+            } else if (PBCONSTANT.flag == -2) {
+                PBCONSTANT.flag = 0;
+                login_form.getPwd().setText("密码错误！");
                 return;
             }
         }
@@ -58,6 +64,7 @@ public class ClientStart {
     private static void main_form() {
         JFrame frame = new JFrame("Main");
         frame.setContentPane(_main.getMain_panel());
+        _main.getUsername().setText(PBCONSTANT.user);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -78,7 +85,7 @@ public class ClientStart {
         _main.getFriends().setModel(models);
     }
 
-    private void addfriend(String uid, String sid) {
+    private static void addfriend(String uid, String sid) {
         Friend friend = new Friend();
         friend.setUid(uid);
         friend.setSid(Long.parseLong(sid));
@@ -88,7 +95,7 @@ public class ClientStart {
         MsgPipe.friends.put(uid, friend);
     }
 
-    public void run() {
+    public static void run() {
         LinkedBlockingQueue<Message> msg_list = rec_msg.get(PBCONSTANT.SYSTEM);
         if (msg_list == null) msg_list = new LinkedBlockingQueue<Message>();
         rec_msg.put(PBCONSTANT.SYSTEM, msg_list);
@@ -98,23 +105,33 @@ public class ClientStart {
                 rec_msg = msg_list.take();
                 switch (rec_msg.getType()) {
                     case PBCONSTANT.ADD_FRIENDS_FLAG:
-                        Add_Friend_Dialog dialog = new Add_Friend_Dialog(rec_msg.get("s_uid"), rec_msg.getType());
+                        Add_Friend_Dialog dialog = new Add_Friend_Dialog(rec_msg.get("s_uid"), PBCONSTANT.ADD_FRIENDS_ACK_FLAG);
                         dialog.pack();
                         dialog.setVisible(true);
                         break;
                     case PBCONSTANT.ADD_FRIENDS_ACK_FLAG:
-                        String str = rec_msg.get("msg");
-                        if (str == null) {
-                            Add_Friend_Dialog dialog2 = new Add_Friend_Dialog(rec_msg.get("s_uid"), rec_msg.getType());
-                            dialog2.pack();
-                            dialog2.setVisible(true);
+                        String status = rec_msg.get("st");
+                        String result = rec_msg.get("msg");
+                        if (status == null) {
+                            if (result.equals("fl")) {
+                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "拒绝添加你为好友！");
+                                sysMsgDialog.pack();
+                                sysMsgDialog.setVisible(true);
+                            } else {
+                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "已同意添加你为好友！");
+                                sysMsgDialog.pack();
+                                sysMsgDialog.setVisible(true);
+                                addfriend(rec_msg.get("s_uid"), rec_msg.get("msg"));
+                            }
                             break;
                         } else {
-                            if (str.equals("sc")) {
-                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "已同意添加你为好友！");
-                                addfriend(rec_msg.get("s_uid"), rec_msg.get("msg"));
+                            if (result.equals("fl")) {
+                                break;
                             } else {
-                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid") + "拒绝添加你为好友！");
+                                SysMsgDialog sysMsgDialog = new SysMsgDialog(rec_msg.get("s_uid").substring(3) + " 已成为你好友！");
+                                sysMsgDialog.pack();
+                                sysMsgDialog.setVisible(true);
+                                addfriend(rec_msg.get("s_uid").substring(3), rec_msg.get("msg"));
                             }
                         }
                 }

@@ -12,7 +12,6 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class FriendsHandler {
     public void process(PBSession session, Message msg) {
-        Message reply = new Message();
         LinkedBlockingQueue<Message> list = MsgPipe.rec_msg.get(PBCONSTANT.SYSTEM);
         if (list == null) {
             list = new LinkedBlockingQueue<>();
@@ -24,6 +23,12 @@ public class FriendsHandler {
                 e.printStackTrace();
             }
         }
+        Message reply = new Message();
+        String msg_key = msg.get("s_uid") + msg.getMsg_id();
+        reply.setParam("msg_key", msg_key);
+        reply.setMsg_id(PBCONSTANT.getMsg_id());
+        reply.setType(PBCONSTANT.ACK_FLAG);
+        session.write(reply);
 
     }
 }

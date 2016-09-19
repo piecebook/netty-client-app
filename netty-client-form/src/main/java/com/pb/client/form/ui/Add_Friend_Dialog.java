@@ -53,23 +53,33 @@ public class Add_Friend_Dialog extends JDialog {
     }
 
     private void onOK() {
-        Message msg = new Message();
-        msg.setType(type);
-        msg.setParam("r_uid", friend);
-        msg.setParam("s_uid", PBCONSTANT.user);
-        if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) msg.setParam("msg", "sc");
-        msg.setMsg_id(PBCONSTANT.getMsg_id());
-        MsgPipe.sendMsg(msg);
+        if (MsgPipe.friends.get(friend) != null) {
+            Message msg = new Message();
+            msg.setType(type);
+            msg.setParam("sid", 0 + "");
+            msg.setParam("msg", "sys");
+            msg.setParam("r_uid", friend);
+            msg.setParam("s_uid", PBCONSTANT.user);
+            if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) msg.setParam("msg", "sc");
+            msg.setMsg_id(PBCONSTANT.getMsg_id());
+            MsgPipe.sendMsg(msg);
+        }else {
+            SysMsgDialog sysMsgDialog = new SysMsgDialog(friend + "已经是你好友！");
+            sysMsgDialog.pack();
+            sysMsgDialog.setVisible(true);
+        }
         dispose();
     }
 
     private void onCancel() {
-        if(type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG){
+        if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) {
             Message msg = new Message();
             msg.setType(type);
+            msg.setParam("sid", 0 + "");
+            msg.setParam("msg", "sys");
             msg.setParam("r_uid", friend);
             msg.setParam("s_uid", PBCONSTANT.user);
-            if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) msg.setParam("msg", "fl");
+            msg.setParam("msg", "fl");
             msg.setMsg_id(PBCONSTANT.getMsg_id());
             MsgPipe.sendMsg(msg);
         }
@@ -77,7 +87,7 @@ public class Add_Friend_Dialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        Add_Friend_Dialog dialog = new Add_Friend_Dialog("piecebook",PBCONSTANT.ADD_FRIENDS_ACK_FLAG);
+        Add_Friend_Dialog dialog = new Add_Friend_Dialog("piecebook", PBCONSTANT.ADD_FRIENDS_ACK_FLAG);
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

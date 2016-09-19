@@ -1,11 +1,14 @@
 package com.pb.client.form.ui;
 
+import com.alibaba.fastjson.JSONObject;
+import com.pb.client.sdk.http.FriendsHttp;
 import com.pb.server.constant.PBCONSTANT;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 /**
  * Created by piecebook on 2016/9/14.
@@ -33,6 +36,23 @@ public class SearchFriend {
             }
         };
         search_result.addMouseListener(mouseListener);
+        search.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String key = search_key.getText();
+                if (key == null || key.equals("")) {
+
+                } else {
+                    FriendsHttp friendsHttp = new FriendsHttp();
+                    List<JSONObject> friends = friendsHttp.searchFriends(key);
+                    DefaultListModel model = new DefaultListModel();
+                    for (JSONObject o : friends) {
+                        model.addElement(o.getString("uid"));
+                    }
+                    search_result.setModel(model);
+                }
+            }
+        });
     }
 
     public static void main(String[] args) {
