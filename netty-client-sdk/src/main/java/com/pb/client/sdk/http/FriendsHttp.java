@@ -1,6 +1,5 @@
 package com.pb.client.sdk.http;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.pb.server.constant.PBCONSTANT;
 
@@ -16,23 +15,17 @@ public class FriendsHttp {
         Map<String, String> params = new HashMap<>();
         params.put("uid", uid);
         params.put("user_id", id);
-        String result = HttpUtil.doPost(PBCONSTANT.HOST + ":8080/friends/get", params);
-        if (result != null) {
-            JSONArray friends = JSON.parseArray(result);
-            return friends;
-        }
-        return null;
+        String response = HttpUtil.doPost(PBCONSTANT.BASEURL + "/friends/get", params);
+        JSONArray friends = (JSONArray) HttpUtil.getData(response);
+        return friends;
     }
 
     public List searchFriends(String search_key) {
         Map<String, String> params = new HashMap<>();
         params.put("search_key", search_key);
-        String result = HttpUtil.doPost(PBCONSTANT.HOST + ":8080/friends/search", params);
-        if (result != null) {
-            JSONArray friends = JSON.parseArray(result);
-            return friends;
-        }
-        return null;
+        String response = HttpUtil.doPost(PBCONSTANT.BASEURL + "/friends/search", params);
+        JSONArray friends = (JSONArray) HttpUtil.getData(response);
+        return friends;
     }
 
 

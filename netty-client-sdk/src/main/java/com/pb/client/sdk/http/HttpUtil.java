@@ -1,5 +1,7 @@
 package com.pb.client.sdk.http;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
@@ -27,6 +29,23 @@ public class HttpUtil {
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
+        }
+        return null;
+    }
+
+    public static JSON getData(String response) {
+        if (response != null) {
+            JSONObject result = JSON.parseObject(response);
+            Integer error_code = result.getInteger("error_code");
+            if (null != error_code) {
+                if (error_code == 200) {
+                    JSON data = (JSON) result.get("data");
+                    return data;
+                } else {
+                    System.out.println(result.getString("reason"));
+                    return null;
+                }
+            } else System.out.println("server error");
         }
         return null;
     }

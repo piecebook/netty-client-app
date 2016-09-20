@@ -29,6 +29,5 @@ public class FriendsHandler {
         reply.setMsg_id(PBCONSTANT.getMsg_id());
         reply.setType(PBCONSTANT.ACK_FLAG);
         session.write(reply);
-
     }
 }

@@ -79,14 +79,16 @@ public class ClientStart {
         List<JSONObject> friends = friendsHttp.getFriends(PBCONSTANT.id, PBCONSTANT.user);
 
         DefaultListModel models = new DefaultListModel();
-        for (JSONObject obj : friends) {
-            Friend friend = new Friend();
-            friend.setId(Long.parseLong(obj.getString("id")));
-            friend.setSid(Long.parseLong(obj.getString("sid")));
-            friend.setUid(obj.getString("uid"));
-            models.addElement(friend.getUid());
-            MsgPipe.friends_win.put(friend.getUid(), 0);
-            MsgPipe.friends.put(friend.getUid(), friend);
+        if (friends != null) {
+            for (JSONObject obj : friends) {
+                Friend friend = new Friend();
+                friend.setId(Long.parseLong(obj.getString("id")));
+                friend.setSid(Long.parseLong(obj.getString("sid")));
+                friend.setUid(obj.getString("uid"));
+                models.addElement(friend.getUid());
+                MsgPipe.friends_win.put(friend.getUid(), 0);
+                MsgPipe.friends.put(friend.getUid(), friend);
+            }
         }
         _main.getFriends().setModel(models);
 
@@ -95,8 +97,19 @@ public class ClientStart {
         List<JSONObject> msg_objs = msgHttp.getOfflineMsg(PBCONSTANT.id, PBCONSTANT.user);
         List<Message> msgs = MsgUtil.buildMsgMulti(msg_objs);
         for (Message msg : msgs) {
-            MsgPipe.sendMsg(msg);
+            try {
+                LinkedBlockingQueue<Message> rec_msgs = MsgPipe.rec_msg.get(msg.get("s_uid"));
+                if (null == rec_msgs) {
+                    rec_msgs = new LinkedBlockingQueue<>();
+                    MsgPipe.rec_msg.put(msg.get("s_uid"), rec_msgs);
+                }
+                rec_msgs.put(msg);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
+        if (null != msgs && msgs.size() != 0) msgHttp.ackOfflineMsg(PBCONSTANT.id, PBCONSTANT.user, msg_objs);
     }
 
     private static void addfriend(String uid, String sid) {

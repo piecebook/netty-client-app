@@ -17,6 +17,7 @@ public class Add_Friend_Dialog extends JDialog {
 
 
     public Add_Friend_Dialog(String friend, byte type) {
+        //TODO:添加好友有问题
         this.type = type;
         this.friend = friend;
         this.info.setText("你要加 " + friend + " 为好友吗？");

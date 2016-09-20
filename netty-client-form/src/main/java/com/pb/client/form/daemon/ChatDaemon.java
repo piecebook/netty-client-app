@@ -24,6 +24,7 @@ public class ChatDaemon implements Runnable {
     }
 
     public void run() {
+        System.out.println("chatting");
         Chat chat_form = new Chat();
         chat_form.setFriend(receiver);
         chat_form.getChat_with().setText(receiver.getUid());
@@ -39,12 +40,15 @@ public class ChatDaemon implements Runnable {
         frame.pack();
         frame.setVisible(true);
         LinkedBlockingQueue<Message> msg_list = rec_msg.get(receiver.getUid());
-        if (msg_list == null) msg_list = new LinkedBlockingQueue<Message>();
-        rec_msg.put(receiver.getUid(), msg_list);
+        if (msg_list == null) {
+            msg_list = new LinkedBlockingQueue<Message>();
+            rec_msg.put(receiver.getUid(), msg_list);
+        }
         while (true) {
             Message rec_msg = null;
             try {
                 rec_msg = msg_list.take();
+                System.out.println(rec_msg.toString());
                 chat_form.getMsg().append(rec_msg.get("s_uid") + ":\n" + rec_msg.get("msg") + "\n");
             } catch (InterruptedException e) {
                 e.printStackTrace();

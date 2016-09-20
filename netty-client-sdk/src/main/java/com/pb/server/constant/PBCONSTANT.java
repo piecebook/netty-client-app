@@ -3,7 +3,8 @@ package com.pb.server.constant;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PBCONSTANT {
-    public static final String HOST = "";
+    public static String HOST = null;
+    public static String BASEURL = null;
     public static AtomicInteger msg_id = new AtomicInteger(1);
     public static final byte LOGIN_FLAG = 1;
     public static final byte LOGIN_REPLY_FLAG = 11;
@@ -42,13 +43,16 @@ public class PBCONSTANT {
     }
 
     static {
-        String env = System.getProperty("env");
+        String env = "deploy";//"dev_note";//System.getProperty("env");
         if (env.equals("dev")) {
-            PBCONSTANT.HOST.concat("127.0.0.1");
+            PBCONSTANT.HOST = "127.0.0.1";
+            PBCONSTANT.BASEURL = "http://" + PBCONSTANT.HOST + ":8080";
         } else if (env.equals("deploy")) {
-            PBCONSTANT.HOST.concat("123.207.120.73");
+            PBCONSTANT.HOST = "123.207.120.73";
+            PBCONSTANT.BASEURL = "http://" + PBCONSTANT.HOST + ":8080/netty-server-web";
         } else if (env.equals("dev_note")) {
-            PBCONSTANT.HOST.concat("125.216.250.85");
+            PBCONSTANT.HOST = "125.216.250.85";
+            PBCONSTANT.BASEURL = "http://" + PBCONSTANT.HOST + ":8080";
         } else {
             System.out.println("未知环境！");
             System.exit(-1);
