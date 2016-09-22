@@ -96,9 +96,12 @@ public class ClientStart {
         MsgHttp msgHttp = new MsgHttp();
         List<JSONObject> msg_objs = msgHttp.getOfflineMsg(PBCONSTANT.id, PBCONSTANT.user);
         List<Message> msgs = MsgUtil.buildMsgMulti(msg_objs);
+        LinkedBlockingQueue<Message> rec_msgs = null;
         for (Message msg : msgs) {
             try {
-                LinkedBlockingQueue<Message> rec_msgs = MsgPipe.rec_msg.get(msg.get("s_uid"));
+                if (msg.getType() == PBCONSTANT.MESSAGE_FLAG)
+                    rec_msgs = MsgPipe.rec_msg.get(msg.get("s_uid"));
+                else rec_msgs = MsgPipe.rec_msg.get(PBCONSTANT.SYSTEM);
                 if (null == rec_msgs) {
                     rec_msgs = new LinkedBlockingQueue<>();
                     MsgPipe.rec_msg.put(msg.get("s_uid"), rec_msgs);
