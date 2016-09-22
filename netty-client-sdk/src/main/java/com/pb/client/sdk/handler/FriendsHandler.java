@@ -26,7 +26,7 @@ public class FriendsHandler {
         Message reply = new Message();
         String msg_key = msg.get("s_uid") + msg.getMsg_id();
         reply.setParam("msg_key", msg_key);
-        reply.setMsg_id(PBCONSTANT.getMsg_id());
+        reply.setMsg_id(System.currentTimeMillis());
         reply.setType(PBCONSTANT.ACK_FLAG);
         session.write(reply);
     }

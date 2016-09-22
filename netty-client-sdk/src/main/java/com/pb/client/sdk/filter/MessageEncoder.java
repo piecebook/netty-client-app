@@ -17,10 +17,14 @@ public class MessageEncoder extends MessageToByteEncoder<Message> {
         outbuf.writeByte(msg.getEncode());
         outbuf.writeByte(msg.getEnzip());
         outbuf.writeByte(msg.getType());
-        byte low = (byte) msg.getMsg_id();
-        byte high = (byte) (msg.getMsg_id() >> 8);
-        outbuf.writeByte(high);
-        outbuf.writeByte(low);
+        long id = msg.getMsg_id();
+        System.out.println(id);
+        byte[] msg_id = new byte[8];
+        for (int i = 7; i >= 0; i--) {
+            msg_id[i] = (byte) id;
+            id = id >> 8;
+        }
+        outbuf.writeBytes(msg_id);
         outbuf.writeBytes(body);
         System.out.println(outbuf.readableBytes());
         ctx.flush();

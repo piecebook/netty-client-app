@@ -55,7 +55,7 @@ public class nettyClient {
             }
             Message msg = new Message();
             msg.setType(PBCONSTANT.MESSAGE_FLAG);
-            msg.setMsg_id(PBCONSTANT.getMsg_id());
+            msg.setMsg_id(System.currentTimeMillis());
             msg.setParam("s_uid", user);
             msg.setParam("msg", content);
             msg.setParam("r_uid", receiver);

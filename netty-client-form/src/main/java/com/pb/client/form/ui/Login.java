@@ -29,7 +29,7 @@ public class Login {
                 Message msg = new Message();
 
                 msg.setType(PBCONSTANT.LOGIN_FLAG);
-                msg.setMsg_id(PBCONSTANT.getMsg_id());
+                msg.setMsg_id(System.currentTimeMillis());
                 msg.setParam("s_uid", uid_value);
                 msg.setParam("pwd", pwd_value);
                 msg.setParam("r_uid", PBCONSTANT.SYSTEM);

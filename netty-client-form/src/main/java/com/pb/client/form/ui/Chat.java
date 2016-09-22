@@ -30,7 +30,7 @@ public class Chat {
                 String msg_value = send_msg.getText();
                 Message msg_s = new Message();
                 msg_s.setType(PBCONSTANT.MESSAGE_FLAG);
-                msg_s.setMsg_id(PBCONSTANT.getMsg_id());
+                msg_s.setMsg_id(System.currentTimeMillis());
                 msg_s.setParam("s_uid", user);
                 msg_s.setParam("msg", msg_value);
                 msg_s.setParam("r_uid", friend.getUid());

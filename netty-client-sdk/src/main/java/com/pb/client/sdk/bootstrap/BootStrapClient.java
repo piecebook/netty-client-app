@@ -21,7 +21,7 @@ public class BootStrapClient {
     private int maxFrameLength = 1048;
     private int lengthFieldOffset = 0;
     private int lengthFieldLength = 4;
-    private int lengthAdjustment = 5;
+    private int lengthAdjustment = 11;
     private int initialBytesToStrip = 0;
 
 	public boolean login(String user, String pwd) {
@@ -32,7 +32,7 @@ public class BootStrapClient {
 			Message msg = new Message();
 
             msg.setType(PBCONSTANT.LOGIN_FLAG);
-			msg.setMsg_id(PBCONSTANT.getMsg_id());
+			msg.setMsg_id(System.currentTimeMillis());
             msg.setParam("s_uid", user);
             msg.setParam("pwd", pwd);
             msg.setParam("r_uid", PBCONSTANT.SYSTEM);

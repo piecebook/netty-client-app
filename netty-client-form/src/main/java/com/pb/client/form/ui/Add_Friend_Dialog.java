@@ -54,7 +54,7 @@ public class Add_Friend_Dialog extends JDialog {
     }
 
     private void onOK() {
-        if (MsgPipe.friends.get(friend) != null) {
+        if (MsgPipe.friends.get(friend) == null) {
             Message msg = new Message();
             msg.setType(type);
             msg.setParam("sid", 0 + "");
@@ -62,7 +62,7 @@ public class Add_Friend_Dialog extends JDialog {
             msg.setParam("r_uid", friend);
             msg.setParam("s_uid", PBCONSTANT.user);
             if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) msg.setParam("msg", "sc");
-            msg.setMsg_id(PBCONSTANT.getMsg_id());
+            msg.setMsg_id(System.currentTimeMillis());
             MsgPipe.sendMsg(msg);
         }else {
             SysMsgDialog sysMsgDialog = new SysMsgDialog(friend + "已经是你好友！");
@@ -81,7 +81,7 @@ public class Add_Friend_Dialog extends JDialog {
             msg.setParam("r_uid", friend);
             msg.setParam("s_uid", PBCONSTANT.user);
             msg.setParam("msg", "fl");
-            msg.setMsg_id(PBCONSTANT.getMsg_id());
+            msg.setMsg_id(System.currentTimeMillis());
             MsgPipe.sendMsg(msg);
         }
         dispose();
