@@ -1,15 +1,13 @@
 package com.pb.client.form.ui;
 
+import com.pb.client.sdk.callback.SendMsgCallbalk;
 import com.pb.client.sdk.model.Friend;
 import com.pb.client.sdk.model.MsgPipe;
 import com.pb.server.constant.PBCONSTANT;
-import com.pb.server.model.Message;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import static com.pb.server.constant.PBCONSTANT.user;
 
 /**
  * Created by piecebook on 2016/9/14.
@@ -28,15 +26,18 @@ public class Chat {
             @Override
             public void mouseClicked(MouseEvent e) {
                 String msg_value = send_msg.getText();
-                Message msg_s = new Message();
-                msg_s.setType(PBCONSTANT.MESSAGE_FLAG);
-                msg_s.setMsg_id(System.currentTimeMillis());
-                msg_s.setParam("s_uid", user);
-                msg_s.setParam("msg", msg_value);
-                msg_s.setParam("r_uid", friend.getUid());
-                msg_s.setParam("sid", friend.getSid() + "");
                 send_msg.setText("");
-                MsgPipe.sendMsg(msg_s);
+                MsgPipe.getInstance().sendMsg(friend.getUid(), friend.getSid(), PBCONSTANT.MESSAGE_FLAG, msg_value, new SendMsgCallbalk() {
+                    @Override
+                    public void onSuccess() {
+                        System.out.println("sc");
+                    }
+
+                    @Override
+                    public void onError(Integer errorcode) {
+                        System.out.println("fl");
+                    }
+                });
                 msg.append(PBCONSTANT.user + ":\n" + msg_value + "\n");
             }
         });

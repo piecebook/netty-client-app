@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b436d995-a983-4f80-b9a1-3fbdaf2c0cea" name="Default" comment="Merge branch 'master' of https://github.com/piecebook/netty-client-app&#10;&#10;# Conflicts:&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/ClientStart.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Login.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Main.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/handler/clientHandler.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/http/FriendsHttp.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/server/constant/PBCONSTANT.class&#10;">
+    <list default="true" id="b436d995-a983-4f80-b9a1-3fbdaf2c0cea" name="Default" comment="change msg_id 2 bytes to 8 bytes">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/callback/SendMsgCallbalk.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java" afterPath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java" afterPath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.java" afterPath="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/bootstrap/BootStrapClient.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/bootstrap/BootStrapClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageDecoder.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageDecoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageEncoder.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageEncoder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/FriendsHandler.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/FriendsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/model/Message.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/model/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java" afterPath="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java" />
     </list>
     <ignored path="netty-client-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,22 +29,68 @@
     <favorites_list name="netty-client-app" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BootStrapClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/bootstrap/BootStrapClient.java">
+    <leaf>
+      <file leaf-file-name="nettyClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+            <state relative-caret-position="503">
+              <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FriendsHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/FriendsHandler.java">
+      <file leaf-file-name="MsgDeamon.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/MsgDeamon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="299">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MsgPipe.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="42" column="126" selection-start-line="42" selection-start-column="126" selection-end-line="42" selection-end-column="126" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1154#1155#0" expanded="true" />
+                <element signature="e#1186#1187#0" expanded="true" />
+                <element signature="e#1226#1227#0" expanded="true" />
+                <element signature="e#1259#1260#0" expanded="true" />
+                <element signature="e#1895#1896#0" expanded="true" />
+                <element signature="e#1925#1926#0" expanded="true" />
+                <element signature="e#1978#1979#0" expanded="true" />
+                <element signature="e#2016#2017#0" expanded="true" />
+                <element signature="e#2073#2074#0" expanded="true" />
+                <element signature="e#2104#2105#0" expanded="true" />
+                <element signature="e#2174#2175#0" expanded="true" />
+                <element signature="e#2214#2215#0" expanded="true" />
+                <element signature="e#2297#2298#0" expanded="true" />
+                <element signature="e#2327#2328#0" expanded="true" />
+                <element signature="e#2422#2423#0" expanded="true" />
+                <element signature="e#2460#2461#0" expanded="true" />
+                <element signature="e#2507#2508#0" expanded="true" />
+                <element signature="e#2537#2538#0" expanded="true" />
+                <element signature="e#2596#2597#0" expanded="true" />
+                <element signature="e#2634#2635#0" expanded="true" />
+                <element signature="e#2686#2687#0" expanded="true" />
+                <element signature="e#2720#2721#0" expanded="true" />
+                <element signature="e#2788#2789#0" expanded="true" />
+                <element signature="e#2834#2835#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clientHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/clientHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1127">
+              <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -60,78 +99,8 @@
       <file leaf-file-name="MessageHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Add_Friend_Dialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="83" column="52" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nettyClient.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SystemDaemon.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/SystemDaemon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Chat.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientStart.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="134" column="101" selection-start-line="134" selection-start-column="101" selection-end-line="134" selection-end-column="101" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PBCONSTANT.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/constant/PBCONSTANT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+            <state relative-caret-position="138">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -143,6 +112,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -175,7 +145,6 @@
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/ChatDaemon.java" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login_Dialog.form" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login_Dialog.java" />
-        <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/SystemDaemon.java" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/SysMsgDialog.form" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/SysMsgDialog.java" />
@@ -185,20 +154,23 @@
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/SearchFriend.form" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Main.form" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.form" />
-        <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/clientHandler.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/http/FriendsHttp.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/http/MsgHttp.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageDecoder.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/filter/MessageEncoder.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/model/Message.java" />
-        <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java" />
         <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/FriendsHandler.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/bootstrap/BootStrapClient.java" />
         <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java" />
+        <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java" />
+        <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/SendMsgCallbalk.java" />
+        <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/callback/SendMsgCallbalk.java" />
+        <option value="$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java" />
+        <option value="$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java" />
       </list>
     </option>
   </component>
@@ -251,6 +223,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -539,44 +514,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="http" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="handler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -591,82 +528,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="filter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bootstrap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="netty-client-form" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -779,121 +640,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SearchFriend" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Login" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="netty-client-form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="form" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Add_Friend_Dialog" />
+              <option name="myItemId" value="Chat" />
               <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -933,15 +680,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../to-mutiThread" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../to-Callback" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -949,6 +693,9 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.pb.client.sdk.callback" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="G:\project\netty-client-app\netty-client-sdk\src\main\java\com\pb\server" />
       <recent name="G:\project\netty-client-app\netty-client-sdk\src\main\java\com\pb" />
@@ -1526,7 +1273,11 @@
       <workItem from="1474335406264" duration="3775000" />
       <workItem from="1474422845880" duration="1050000" />
       <workItem from="1474424359075" duration="934000" />
-      <workItem from="1474528650831" duration="1770000" />
+      <workItem from="1474528650831" duration="3541000" />
+      <workItem from="1474946292230" duration="52000" />
+      <workItem from="1474958156700" duration="2640000" />
+      <workItem from="1475218683592" duration="647000" />
+      <workItem from="1475910870693" duration="5464000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/piecebook/netty-client-app&#10;&#10;# Conflicts:&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/ClientStart.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Login.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Main.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/handler/clientHandler.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/http/FriendsHttp.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/server/constant/PBCONSTANT.class&#10;">
       <created>1474250040298</created>
@@ -1542,11 +1293,25 @@
       <option name="project" value="LOCAL" />
       <updated>1474250052517</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="change msg_id 2 bytes to 8 bytes">
+      <created>1474533944791</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1474533944791</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change msg_id 2 bytes to 8 bytes">
+      <created>1474537698746</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1474537698746</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50355000" />
+    <option name="totallyTimeSpent" value="60929000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1567,14 +1332,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3983871" sideWeight="0.5060514" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.219935" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.49394855" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21885157" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17590618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1586,6 +1350,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1601,7 +1366,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of https://github.com/piecebook/netty-client-app&#10;&#10;# Conflicts:&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/ClientStart.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Login.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Main.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/handler/clientHandler.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/http/FriendsHttp.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/server/constant/PBCONSTANT.class&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/piecebook/netty-client-app&#10;&#10;# Conflicts:&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/ClientStart.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Login.class&#10;#&#9;netty-client-form/target/classes/com/pb/client/form/ui/Main.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/handler/clientHandler.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/client/sdk/http/FriendsHttp.class&#10;#&#9;netty-client-sdk/target/classes/com/pb/server/constant/PBCONSTANT.class&#10;" />
+    <MESSAGE value="change msg_id 2 bytes to 8 bytes" />
+    <option name="LAST_COMMIT_MESSAGE" value="change msg_id 2 bytes to 8 bytes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1622,22 +1388,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/constant/PBCONSTANT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/SearchFriend.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -1658,7 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1590">
           <caret line="66" column="52" selection-start-line="66" selection-start-column="52" selection-end-line="66" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1666,7 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1674,9 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1830">
           <caret line="65" column="48" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1698,22 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#558#1494#0" expanded="false" />
-            <element signature="e#1493#1494#0" expanded="false" />
-            <element signature="e#2344#2345#0" expanded="false" />
-            <element signature="e#2374#2375#0" expanded="false" />
-            <element signature="e#2411#2412#0" expanded="false" />
-            <element signature="e#2444#2445#0" expanded="false" />
-            <element signature="e#2479#2480#0" expanded="false" />
-            <element signature="e#2510#2511#0" expanded="false" />
-            <element signature="e#2550#2551#0" expanded="false" />
-            <element signature="e#2586#2587#0" expanded="false" />
-            <element signature="e#2623#2624#0" expanded="false" />
-            <element signature="e#2656#2657#0" expanded="false" />
-            <element signature="e#2694#2695#0" expanded="false" />
-            <element signature="e#2727#2728#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1773,13 +1502,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/MsgDeamon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1804,13 +1526,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="16" column="146" selection-start-line="16" selection-start-column="146" selection-end-line="16" selection-end-column="146" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/SysMsgDialog.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1827,22 +1542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="30" column="58" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-          <folding>
-            <element signature="e#558#1494#0" expanded="false" />
-            <element signature="e#1493#1494#0" expanded="false" />
-            <element signature="e#2344#2345#0" expanded="false" />
-            <element signature="e#2374#2375#0" expanded="false" />
-            <element signature="e#2411#2412#0" expanded="false" />
-            <element signature="e#2444#2445#0" expanded="false" />
-            <element signature="e#2479#2480#0" expanded="false" />
-            <element signature="e#2510#2511#0" expanded="false" />
-            <element signature="e#2550#2551#0" expanded="false" />
-            <element signature="e#2586#2587#0" expanded="false" />
-            <element signature="e#2623#2624#0" expanded="false" />
-            <element signature="e#2656#2657#0" expanded="false" />
-            <element signature="e#2694#2695#0" expanded="false" />
-            <element signature="e#2727#2728#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1875,30 +1574,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="ui-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/clientHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1196">
-          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/http/FriendsHttp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1906,9 +1591,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1916,7 +1598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1924,7 +1605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1932,7 +1612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1944,51 +1623,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/ChatDaemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="47" column="12" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/SystemDaemon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="32" column="58" selection-start-line="32" selection-start-column="58" selection-end-line="32" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="134" column="101" selection-start-line="134" selection-start-column="101" selection-end-line="134" selection-end-column="101" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="83" column="52" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="31" column="56" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1996,15 +1634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2012,23 +1641,139 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="34" column="52" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Add_Friend_Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="83" column="52" selection-start-line="83" selection-start-column="52" selection-end-line="83" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/ClientStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2047">
+          <caret line="104" column="39" selection-start-line="104" selection-start-column="39" selection-end-line="104" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/SystemDaemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/nettyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
+        <state relative-caret-position="503">
           <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/MessageHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/server/constant/PBCONSTANT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
+        <state relative-caret-position="871">
           <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/MsgDeamon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/callback/SendMsgCallbalk.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/daemon/ChatDaemon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="25" column="23" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-form/src/main/java/com/pb/client/form/ui/Chat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="48" column="61" selection-start-line="48" selection-start-column="61" selection-end-line="48" selection-end-column="61" />
+          <folding>
+            <element signature="e#1023#1024#0" expanded="true" />
+            <element signature="e#1095#1096#0" expanded="true" />
+            <element signature="e#1187#1188#0" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/handler/clientHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1127">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/netty-client-sdk/src/main/java/com/pb/client/sdk/model/MsgPipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="42" column="126" selection-start-line="42" selection-start-column="126" selection-end-line="42" selection-end-column="126" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1154#1155#0" expanded="true" />
+            <element signature="e#1186#1187#0" expanded="true" />
+            <element signature="e#1226#1227#0" expanded="true" />
+            <element signature="e#1259#1260#0" expanded="true" />
+            <element signature="e#1895#1896#0" expanded="true" />
+            <element signature="e#1925#1926#0" expanded="true" />
+            <element signature="e#1978#1979#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#2104#2105#0" expanded="true" />
+            <element signature="e#2174#2175#0" expanded="true" />
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2297#2298#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#2422#2423#0" expanded="true" />
+            <element signature="e#2460#2461#0" expanded="true" />
+            <element signature="e#2507#2508#0" expanded="true" />
+            <element signature="e#2537#2538#0" expanded="true" />
+            <element signature="e#2596#2597#0" expanded="true" />
+            <element signature="e#2634#2635#0" expanded="true" />
+            <element signature="e#2686#2687#0" expanded="true" />
+            <element signature="e#2720#2721#0" expanded="true" />
+            <element signature="e#2788#2789#0" expanded="true" />
+            <element signature="e#2834#2835#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
