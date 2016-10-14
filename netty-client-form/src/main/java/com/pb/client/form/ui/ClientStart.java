@@ -1,7 +1,7 @@
 package com.pb.client.form.ui;
 
 import com.alibaba.fastjson.JSONObject;
-import com.pb.client.sdk.MsgDeamon;
+import com.pb.client.sdk.deamon.MsgDeamon;
 import com.pb.client.sdk.http.FriendsHttp;
 import com.pb.client.sdk.http.MsgHttp;
 import com.pb.client.sdk.model.Friend;

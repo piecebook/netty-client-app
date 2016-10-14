@@ -10,15 +10,15 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * Created by piecebook on 2016/8/8.
  */
-public class MessageHandler {
-    public void process(PBSession session, Message msg) {
+public class MessageHandler implements PBIOHandler{
+    public Message process(PBSession session, Message msg) {
         System.out.println("From " + msg.get("s_uid") + " :"
                 + msg.toString());
 
-        LinkedBlockingQueue msg_list = MsgPipe.rec_msg.get(msg.get("s_uid"));
+        LinkedBlockingQueue msg_list = MsgPipe.getInstance().getRec_msg().get(msg.get("s_uid"));
         if(msg_list==null){
             msg_list = new LinkedBlockingQueue();
-            MsgPipe.rec_msg.put(msg.get("s_uid"),msg_list);
+            MsgPipe.getInstance().getRec_msg().put(msg.get("s_uid"),msg_list);
         }else{
             try {
                 msg_list.put(msg);
@@ -32,6 +32,6 @@ public class MessageHandler {
         reply.setParam("msg_key", msg_key);
         reply.setMsg_id(System.currentTimeMillis());
         reply.setType(PBCONSTANT.ACK_FLAG);
-        session.write(reply);
+        return reply;
     }
 }

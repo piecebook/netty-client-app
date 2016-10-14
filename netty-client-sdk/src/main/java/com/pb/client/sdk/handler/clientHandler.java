@@ -9,6 +9,7 @@ import io.netty.channel.SimpleChannelInboundHandler;
 public class clientHandler extends SimpleChannelInboundHandler<Message> {
     private MessageHandler messageHandler = new MessageHandler();
     private FriendsHandler friendsHandler = new FriendsHandler();
+    private MsgCallbalckHandler msgCallbalckHandler = new MsgCallbalckHandler();
     /*@Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt)
 			throws Exception {
@@ -42,6 +43,7 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
             throws Exception {
         PBSession session = new PBSession();
         session.setSession(ctx.channel());
+        Message reply = null;
         switch (msg.getType()) {
             case PBCONSTANT.LOGIN_REPLY_FLAG:
                 String result = msg.get("st");
@@ -50,28 +52,28 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
                     PBCONSTANT.id = msg.get("id");
                     PBCONSTANT.user = msg.get("r_uid");
                     PBCONSTANT.flag = 1;
-                } else if(result.equals("unfound")){
+                } else if (result.equals("unfound")) {
                     PBCONSTANT.flag = -1;
-                }else
+                } else
                     PBCONSTANT.flag = -2;
                 break;
             case PBCONSTANT.MESSAGE_REPLY_FLAG:
-                System.out.println("From " + msg.get("s_uid") + " :"
-                        + msg.get("st"));
+                msgCallbalckHandler.process(session, msg);
                 break;
             case PBCONSTANT.MESSAGE_FLAG:
-                messageHandler.process(session, msg);
+                reply = messageHandler.process(session, msg);
                 break;
             case PBCONSTANT.ADD_FRIENDS_FLAG:
-                friendsHandler.process(session, msg);
+                reply = friendsHandler.process(session, msg);
                 break;
             case PBCONSTANT.ADD_FRIENDS_ACK_FLAG:
-                friendsHandler.process(session, msg);
+                reply = friendsHandler.process(session, msg);
                 break;
             case PBCONSTANT.ADD_FRIENDS_MSG_ACK_FLAG:
                 break;
             default:
         }
+        session.write(reply);
     }
 
 }
