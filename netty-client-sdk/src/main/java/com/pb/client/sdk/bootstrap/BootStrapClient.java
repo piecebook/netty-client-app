@@ -14,80 +14,87 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.timeout.IdleStateHandler;
+
+import java.util.concurrent.TimeUnit;
 
 public class BootStrapClient {
-	private SocketChannel channel = null;
+    private SocketChannel channel = null;
 
     private int maxFrameLength = 1048;
     private int lengthFieldOffset = 0;
     private int lengthFieldLength = 4;
     private int lengthAdjustment = 11;
     private int initialBytesToStrip = 0;
+    private int READ_IDLE_TIME_OUT = 5;
+    private int WRITE_IDLE_TIME_OUT = 4;
+    private int READ_WRITE_IDLE_TIME_OUT = 4;
 
-	public boolean login(String user, String pwd) {
-		if (channel == null) {
-			System.out.println("Connect first!");
-			return false;
-		} else {
-			Message msg = new Message();
+    public boolean login(String user, String pwd) {
+        if (channel == null) {
+            System.out.println("Connect first!");
+            return false;
+        } else {
+            Message msg = new Message();
 
             msg.setType(PBCONSTANT.LOGIN_FLAG);
-			msg.setMsg_id(System.currentTimeMillis());
+            msg.setMsg_id(System.currentTimeMillis());
             msg.setParam("s_uid", user);
             msg.setParam("pwd", pwd);
             msg.setParam("r_uid", PBCONSTANT.SYSTEM);
-			channel.writeAndFlush(msg);
-			System.out.println("login:"+msg.toString());
-			while (true) {
-				// System.out.println(PBCONSTANT.flag);
-				if (PBCONSTANT.flag == 1) {
-					PBCONSTANT.user = user;
-					return true;
-				} else if (PBCONSTANT.flag == -1) {
-					PBCONSTANT.flag = 0;
-					return false;
-				}
-			}
-		}
-	}
+            channel.writeAndFlush(msg);
+            System.out.println("login:" + msg.toString());
+            while (true) {
+                // System.out.println(PBCONSTANT.flag);
+                if (PBCONSTANT.flag == 1) {
+                    PBCONSTANT.user = user;
+                    return true;
+                } else if (PBCONSTANT.flag == -1) {
+                    PBCONSTANT.flag = 0;
+                    return false;
+                }
+            }
+        }
+    }
 
-	public void connect(String host, int port) {
-		EventLoopGroup workergroup = new NioEventLoopGroup();
-		try {
-			Bootstrap bootstrap = new Bootstrap();
-			bootstrap.group(workergroup);
-			bootstrap.channel(NioSocketChannel.class);
-			bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
-			bootstrap.handler(new ChannelInitializer<SocketChannel>() {
+    public void connect(String host, int port) {
+        EventLoopGroup workergroup = new NioEventLoopGroup();
+        try {
+            Bootstrap bootstrap = new Bootstrap();
+            bootstrap.group(workergroup);
+            bootstrap.channel(NioSocketChannel.class);
+            bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
+            bootstrap.handler(new ChannelInitializer<SocketChannel>() {
 
-				@Override
-				protected void initChannel(SocketChannel channel)
-						throws Exception {
-					channel.pipeline().addLast(new MessageEncoder());
-					//channel.pipeline().addLast(new ObjectEncoder());
-					// channel.pipeline().addLast(new MessageDecoder());
-					//channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
-					channel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxFrameLength,lengthFieldOffset,lengthFieldLength,lengthAdjustment,initialBytesToStrip));
-					channel.pipeline().addLast(new MessageDecoder());
-					channel.pipeline().addLast(new clientHandler());
+                @Override
+                protected void initChannel(SocketChannel channel)
+                        throws Exception {
+                    channel.pipeline().addLast(new MessageEncoder());
+                    //channel.pipeline().addLast(new ObjectEncoder());
+                    // channel.pipeline().addLast(new MessageDecoder());
+                    //channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
+                    channel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip));
+                    channel.pipeline().addLast(new MessageDecoder());
+                    channel.pipeline().addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, READ_WRITE_IDLE_TIME_OUT, TimeUnit.MINUTES));
+                    channel.pipeline().addLast(new clientHandler());
 
-				}
+                }
 
-			});
-			ChannelFuture future = bootstrap.connect(host, port).sync();
-			if (future.isSuccess()) {
-				channel = (SocketChannel) future.channel();
-				System.out.println("Connect Server:" + channel.remoteAddress() +" Success!");
-			}
-		} catch (Exception e) {
-			System.out.println("Connect Server Fail!");
-			//e.printStackTrace();
-			System.exit(-1);
-		}
+            });
+            ChannelFuture future = bootstrap.connect(host, port).sync();
+            if (future.isSuccess()) {
+                channel = (SocketChannel) future.channel();
+                System.out.println("Connect Server:" + channel.remoteAddress() + " Success!");
+            }
+        } catch (Exception e) {
+            System.out.println("Connect Server Fail!");
+            //e.printStackTrace();
+            System.exit(-1);
+        }
 
-	}
+    }
 
-	public SocketChannel getChannel() {
-		return channel;
-	}
+    public SocketChannel getChannel() {
+        return channel;
+    }
 }
