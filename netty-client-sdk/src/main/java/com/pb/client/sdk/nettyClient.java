@@ -4,7 +4,6 @@ package com.pb.client.sdk;
 import com.pb.client.sdk.bootstrap.BootStrapClient;
 import com.pb.server.constant.PBCONSTANT;
 import com.pb.server.model.Message;
-import io.netty.channel.socket.SocketChannel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,15 +15,8 @@ public class nettyClient {
     //private static final String HOST = "123.207.120.73";
     private static final String HOST = PBCONSTANT.HOST;
 
-    public SocketChannel getSession(){
-        BootStrapClient client = new BootStrapClient();
-        client.connect(HOST,PORT);
-        return client.getChannel();
-
-    }
     public static void main(String[] args) {
-        BootStrapClient client = new BootStrapClient();
-        client.connect(HOST, PORT);
+        BootStrapClient.init();
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 System.in));
 
@@ -39,7 +31,7 @@ public class nettyClient {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if (client.login(user, pwd))
+            if (BootStrapClient.login(user, pwd))
                 break;
         }
         while (true) {
@@ -60,7 +52,7 @@ public class nettyClient {
             msg.setParam("msg", content);
             msg.setParam("r_uid", receiver);
             msg.setParam("sid", 1 + "");
-            client.getChannel().writeAndFlush(msg);
+            BootStrapClient.getChannel().writeAndFlush(msg);
         }
     }
 

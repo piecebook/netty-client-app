@@ -1,11 +1,14 @@
 package com.pb.client.sdk.handler;
 
+import com.pb.client.sdk.bootstrap.BootStrapClient;
 import com.pb.server.constant.PBCONSTANT;
 import com.pb.server.model.Message;
 import com.pb.server.session.PBSession;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
+
+import java.util.concurrent.TimeUnit;
 
 public class clientHandler extends SimpleChannelInboundHandler<Message> {
     private MessageHandler messageHandler = new MessageHandler();
@@ -37,7 +40,10 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         super.channelInactive(ctx);
-        System.out.println("inactive");
+        System.out.println("inactive, reconnect");
+        //lambda表达式
+        ctx.channel().eventLoop().schedule(() -> BootStrapClient.doConnect(), 3, TimeUnit.SECONDS);
+        ctx.close();
     }
 
     @Override

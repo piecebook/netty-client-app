@@ -6,33 +6,28 @@ import com.pb.client.sdk.handler.clientHandler;
 import com.pb.server.constant.PBCONSTANT;
 import com.pb.server.model.Message;
 import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.timeout.IdleStateHandler;
 
+import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
 public class BootStrapClient {
-    private SocketChannel channel = null;
+    private static volatile Bootstrap bootstrap;
+    private static volatile EventLoopGroup workergroup;
+    private static volatile boolean isClose = false;
+    private static final String HOST = "123.207.120.73";
+    private static final int PORT = 8000;
+    private static SocketChannel channel = null;
 
-    private int maxFrameLength = 1048;
-    private int lengthFieldOffset = 0;
-    private int lengthFieldLength = 4;
-    private int lengthAdjustment = 11;
-    private int initialBytesToStrip = 0;
-    private int READ_IDLE_TIME_OUT = 5;
-    private int WRITE_IDLE_TIME_OUT = 4;
-    private int READ_WRITE_IDLE_TIME_OUT = 4;
 
-    public boolean login(String user, String pwd) {
+    public static boolean login(String user, String pwd) {
         if (channel == null) {
-            System.out.println("Connect first!");
+            System.out.println("init first!");
             return false;
         } else {
             Message msg = new Message();
@@ -57,44 +52,70 @@ public class BootStrapClient {
         }
     }
 
-    public void connect(String host, int port) {
-        EventLoopGroup workergroup = new NioEventLoopGroup();
-        try {
-            Bootstrap bootstrap = new Bootstrap();
-            bootstrap.group(workergroup);
-            bootstrap.channel(NioSocketChannel.class);
-            bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
-            bootstrap.handler(new ChannelInitializer<SocketChannel>() {
+    public static void init() {
+        final int maxFrameLength = 1048;
+        final int lengthFieldOffset = 0;
+        final int lengthFieldLength = 4;
+        final int lengthAdjustment = 11;
+        final int initialBytesToStrip = 0;
+        final int READ_IDLE_TIME_OUT = 5;
+        final int WRITE_IDLE_TIME_OUT = 4;
+        final int READ_WRITE_IDLE_TIME_OUT = 4;
 
-                @Override
-                protected void initChannel(SocketChannel channel)
-                        throws Exception {
-                    channel.pipeline().addLast(new MessageEncoder());
-                    //channel.pipeline().addLast(new ObjectEncoder());
-                    // channel.pipeline().addLast(new MessageDecoder());
-                    //channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
-                    channel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip));
-                    channel.pipeline().addLast(new MessageDecoder());
-                    channel.pipeline().addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, READ_WRITE_IDLE_TIME_OUT, TimeUnit.MINUTES));
-                    channel.pipeline().addLast(new clientHandler());
 
-                }
+        isClose = false;
+        workergroup = new NioEventLoopGroup();
+        bootstrap = new Bootstrap();
+        bootstrap.group(workergroup);
+        bootstrap.channel(NioSocketChannel.class);
+        bootstrap.option(ChannelOption.SO_KEEPALIVE, true);
+        bootstrap.handler(new ChannelInitializer<SocketChannel>() {
 
-            });
-            ChannelFuture future = bootstrap.connect(host, port).sync();
-            if (future.isSuccess()) {
-                channel = (SocketChannel) future.channel();
-                System.out.println("Connect Server:" + channel.remoteAddress() + " Success!");
+            @Override
+            protected void initChannel(SocketChannel channel)
+                    throws Exception {
+                channel.pipeline().addLast(new MessageEncoder());
+                //channel.pipeline().addLast(new ObjectEncoder());
+                // channel.pipeline().addLast(new MessageDecoder());
+                //channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
+                channel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip));
+                channel.pipeline().addLast(new MessageDecoder());
+                channel.pipeline().addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, READ_WRITE_IDLE_TIME_OUT, TimeUnit.MINUTES));
+                channel.pipeline().addLast(new clientHandler());
+
             }
-        } catch (Exception e) {
-            System.out.println("Connect Server Fail!");
-            //e.printStackTrace();
-            System.exit(-1);
-        }
 
+        });
+        doConnect();
     }
 
-    public SocketChannel getChannel() {
+    public static void doConnect() {
+        if (isClose) return;
+        ChannelFuture future = bootstrap.connect(new InetSocketAddress(HOST, PORT));
+        //lambda表达式
+        future.addListener((ChannelFuture channelFuture) -> {
+                    if (channelFuture.isSuccess()) {
+                        channel = (SocketChannel) channelFuture.channel();
+                        System.out.println("Connect Server:" + getServerInfo() + " Success!");
+                    } else {
+                        System.out.println("Connect Fail! Retrying " + getServerInfo());
+                        channelFuture.channel().eventLoop().schedule(() -> doConnect(), 3, TimeUnit.SECONDS);
+                    }
+                }
+        );
+    }
+
+    private static String getServerInfo() {
+        return String.format("{\"RemoteHost\":%s \"RemotePort\":%d}", HOST, PORT);
+    }
+
+    public static void close() {
+        isClose = true;
+        workergroup.shutdownGracefully();
+        System.out.println("client close");
+    }
+
+    public static SocketChannel getChannel() {
         return channel;
     }
 }
