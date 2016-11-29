@@ -48,10 +48,10 @@ public class nettyClient {
             Message msg = new Message();
             msg.setType(PBCONSTANT.MESSAGE_FLAG);
             msg.setMsg_id(System.currentTimeMillis());
-            msg.setParam("s_uid", user);
-            msg.setParam("msg", content);
-            msg.setParam("r_uid", receiver);
-            msg.setParam("sid", 1 + "");
+            msg.setSender(user);
+            msg.setContent(content);
+            msg.setReceiver(receiver);
+            msg.setSession_id(1L);
             BootStrapClient.getChannel().writeAndFlush(msg);
         }
     }

@@ -1,8 +1,8 @@
 package com.pb.client.form.ui;
 
+import com.pb.client.sdk.callback.SendMsgCallbalk;
 import com.pb.client.sdk.model.MsgPipe;
 import com.pb.server.constant.PBCONSTANT;
-import com.pb.server.model.Message;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -13,10 +13,10 @@ public class Add_Friend_Dialog extends JDialog {
     private JButton buttonCancel;
     private JLabel info;
     private String friend;
-    private byte type;
+    private int type;
 
 
-    public Add_Friend_Dialog(String friend, byte type) {
+    public Add_Friend_Dialog(String friend, int type) {
         //TODO:添加好友有问题
         this.type = type;
         this.friend = friend;
@@ -54,16 +54,20 @@ public class Add_Friend_Dialog extends JDialog {
     }
 
     private void onOK() {
-        if (MsgPipe.friends.get(friend) == null) {
-            Message msg = new Message();
-            msg.setType(type);
-            msg.setParam("sid", 0 + "");
-            msg.setParam("msg", "sys");
-            msg.setParam("r_uid", friend);
-            msg.setParam("s_uid", PBCONSTANT.user);
-            if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) msg.setParam("msg", "sc");
-            msg.setMsg_id(System.currentTimeMillis());
-            MsgPipe.sendMsg(msg);
+        if (MsgPipe.getInstance().getFriends().get(friend) == null) {
+            String content = "sys";
+            if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) content="sc";
+            MsgPipe.getInstance().sendMsg(friend, 0L, type, content, new SendMsgCallbalk() {
+                @Override
+                public void onSuccess() {
+                    System.out.println("sended");
+                }
+
+                @Override
+                public void onError(Integer errorcode) {
+                    System.out.println("error");
+                }
+            });
         }else {
             SysMsgDialog sysMsgDialog = new SysMsgDialog(friend + "已经是你好友！");
             sysMsgDialog.pack();
@@ -74,15 +78,16 @@ public class Add_Friend_Dialog extends JDialog {
 
     private void onCancel() {
         if (type == PBCONSTANT.ADD_FRIENDS_ACK_FLAG) {
-            Message msg = new Message();
-            msg.setType(type);
-            msg.setParam("sid", 0 + "");
-            msg.setParam("msg", "sys");
-            msg.setParam("r_uid", friend);
-            msg.setParam("s_uid", PBCONSTANT.user);
-            msg.setParam("msg", "fl");
-            msg.setMsg_id(System.currentTimeMillis());
-            MsgPipe.sendMsg(msg);
+            MsgPipe.getInstance().sendMsg(friend, 0L, type, "fl", new SendMsgCallbalk() {
+                @Override
+                public void onSuccess() {
+                }
+
+                @Override
+                public void onError(Integer errorcode) {
+
+                }
+            });
         }
         dispose();
     }

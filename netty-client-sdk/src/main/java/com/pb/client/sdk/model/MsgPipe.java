@@ -36,15 +36,15 @@ public class MsgPipe {
         return _instance;
     }
 
-    public void sendMsg(final String receiver, final Long sid, final Byte msgType, String content, SendMsgCallbalk callbalk) {
+    public void sendMsg(final String receiver, final Long sid, final int msgType, String content, SendMsgCallbalk callbalk) {
         Message msg_s = new Message();
         msg_s.setType(msgType);
         Long msg_id = System.currentTimeMillis();
         msg_s.setMsg_id(msg_id);
-        msg_s.setParam("s_uid", PBCONSTANT.user);
-        msg_s.setParam("msg", content);
-        msg_s.setParam("r_uid", receiver);
-        msg_s.setParam("sid", sid + "");
+        msg_s.setSender(PBCONSTANT.user);
+        msg_s.setContent(content);
+        msg_s.setReceiver( receiver);
+        msg_s.setSession_id(sid);
         if (session != null) {
             msgCallbalkMap.put(msg_id, callbalk);
             send_msg.put(msg_id, msg_s);

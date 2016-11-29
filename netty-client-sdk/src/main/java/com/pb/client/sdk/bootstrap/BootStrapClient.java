@@ -2,6 +2,7 @@ package com.pb.client.sdk.bootstrap;
 
 import com.pb.client.sdk.filter.MessageDecoder;
 import com.pb.client.sdk.filter.MessageEncoder;
+import com.pb.client.sdk.filter.MessageProtos;
 import com.pb.client.sdk.handler.clientHandler;
 import com.pb.server.constant.PBCONSTANT;
 import com.pb.server.model.Message;
@@ -34,9 +35,9 @@ public class BootStrapClient {
 
             msg.setType(PBCONSTANT.LOGIN_FLAG);
             msg.setMsg_id(System.currentTimeMillis());
-            msg.setParam("s_uid", user);
-            msg.setParam("pwd", pwd);
-            msg.setParam("r_uid", PBCONSTANT.SYSTEM);
+            msg.setSender(user);
+            msg.setContent(pwd);
+            msg.setReceiver(PBCONSTANT.SYSTEM);
             channel.writeAndFlush(msg);
             System.out.println("login:" + msg.toString());
             while (true) {
@@ -79,7 +80,7 @@ public class BootStrapClient {
                 // channel.pipeline().addLast(new MessageDecoder());
                 //channel.pipeline().addLast(new ObjectDecoder(ClassResolvers.cacheDisabled(null)));
                 channel.pipeline().addLast(new LengthFieldBasedFrameDecoder(maxFrameLength, lengthFieldOffset, lengthFieldLength, lengthAdjustment, initialBytesToStrip));
-                channel.pipeline().addLast(new MessageDecoder());
+                channel.pipeline().addLast(new MessageDecoder(MessageProtos.MessageProto.getDefaultInstance()));
                 channel.pipeline().addLast(new IdleStateHandler(READ_IDLE_TIME_OUT, WRITE_IDLE_TIME_OUT, READ_WRITE_IDLE_TIME_OUT, TimeUnit.MINUTES));
                 channel.pipeline().addLast(new clientHandler());
 
@@ -116,6 +117,10 @@ public class BootStrapClient {
     }
 
     public static SocketChannel getChannel() {
+        return channel;
+    }
+
+    public SocketChannel getChannel(int flag) {
         return channel;
     }
 }

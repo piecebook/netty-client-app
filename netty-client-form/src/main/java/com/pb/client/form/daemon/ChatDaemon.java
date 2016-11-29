@@ -10,8 +10,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static com.pb.client.sdk.model.MsgPipe.rec_msg;
-
 /**
  * Created by piecebook on 2016/9/14.
  */
@@ -33,23 +31,23 @@ public class ChatDaemon implements Runnable {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                MsgPipe.friends_win.put(receiver.getUid(), 0);
+                MsgPipe.getInstance().getFriends_win().put(receiver.getUid(), 0);
                 super.windowClosing(e);
             }
         });
         frame.pack();
         frame.setVisible(true);
-        LinkedBlockingQueue<Message> msg_list = rec_msg.get(receiver.getUid());
+        LinkedBlockingQueue<Message> msg_list = MsgPipe.getInstance().getRec_msg().get(receiver.getUid());
         if (msg_list == null) {
             msg_list = new LinkedBlockingQueue<Message>();
-            rec_msg.put(receiver.getUid(), msg_list);
+            MsgPipe.getInstance().getRec_msg().put(receiver.getUid(), msg_list);
         }
         while (true) {
             Message rec_msg = null;
             try {
                 rec_msg = msg_list.take();
                 System.out.println(rec_msg.toString());
-                chat_form.getMsg().append(rec_msg.get("s_uid") + ":\n" + rec_msg.get("msg") + "\n");
+                chat_form.getMsg().append(rec_msg.getSender() + ":\n" + rec_msg.getContent() + "\n");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

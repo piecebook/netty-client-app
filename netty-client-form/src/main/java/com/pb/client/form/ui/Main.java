@@ -30,10 +30,10 @@ public class Main {
                         Object o = theList.getModel().getElementAt(index);
                         String select_user = o.toString();
                         System.out.println(o.toString());
-                        Integer win = MsgPipe.friends_win.get(select_user);
+                        Integer win = MsgPipe.getInstance().getFriends_win().get(select_user);
                         if (win == 0) {
-                            MsgPipe.friends_win.put(select_user, 1);
-                            Thread thread = new Thread(new ChatDaemon(MsgPipe.friends.get(select_user)));
+                            MsgPipe.getInstance().getFriends_win().put(select_user, 1);
+                            Thread thread = new Thread(new ChatDaemon(MsgPipe.getInstance().getFriends().get(select_user)));
                             thread.start();
                         }
                     }

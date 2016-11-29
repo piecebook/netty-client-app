@@ -12,8 +12,8 @@ public class MsgCallbalckHandler implements PBIOHandler {
 
     @Override
     public Message process(PBSession session, Message msg) {
-        SendMsgCallbalk callbalk = MsgPipe.getInstance().getMsgCallbalkMap().get(msg.get("id"));
-        MsgPipe.getInstance().getSend_msg().remove(msg.get("id"));
+        SendMsgCallbalk callbalk = MsgPipe.getInstance().getMsgCallbalkMap().get(msg.getContent());
+        MsgPipe.getInstance().getSend_msg().remove(msg.getContent());
         if (callbalk != null) callbalk.onSuccess();
         return null;
     }

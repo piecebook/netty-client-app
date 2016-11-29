@@ -1,108 +1,55 @@
 package com.pb.server.model;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
 /**
- * 消息传输类
- * 该类用于消息在网络中传输
- * 序列化传输协议：PBProtocol
- * <p>
- * 消息数据成员 为 消息头
- * HashMap content 为 消息体
+ * 消息类
  */
-public class Message implements Serializable {
-    private static final long serialVersionUID = 1L;
-    private byte type;// 消息类型
-    private byte encode;// 数据编码格式。已定义：0：UTF-8，1：GBK，2：GB2312，3：ISO8859-1
-    private byte enzip;// 加密类型。0表示不加密
-    private int length;// 消息体长度
-    private long msg_id;// 消息id
-    private Long time;// 消息时间，传输时放进HashMap content里面
-
-    //消息体
-    private HashMap<String, String> content = new HashMap<String, String>();
+public class Message extends BaseMessage {
+    private String content;
+    private Long session_id;
 
     public Message() {
-        this.time = System.currentTimeMillis();
-        this.encode = 1;
-        this.enzip = 1;
     }
 
-    public byte getType() {
-        return type;
-    }
-
-    public void setType(byte type) {
-        this.type = type;
-    }
-
-    public byte getEncode() {
-        return encode;
-    }
-
-    public void setEncode(byte encode) {
-        this.encode = encode;
-    }
-
-    public byte getEnzip() {
-        return enzip;
-    }
-
-    public void setEnzip(byte enzip) {
-        this.enzip = enzip;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
-    public long getMsg_id() {
-        return msg_id;
-    }
-
-    public void setMsg_id(long msg_id) {
-        this.msg_id = msg_id;
-    }
-
-    public HashMap<String, String> getContent() {
-        return content;
-    }
-
-    public void setContent(HashMap<String, String> content) {
+    public Message(String sender, String receiver, String content) {
+        super(sender, receiver);
         this.content = content;
     }
 
-    public void setParam(String key, String value) {
-        content.put(key, value);
+    public Message(int type, Long msg_id, String sender, String receiver, Long time_long, String content, Long session_id) {
+        super(type, msg_id, sender, receiver, time_long);
+        this.content = content;
+        this.session_id = session_id;
     }
 
-    public String get(String key) {
-        return content.get(key);
+    public String getContent() {
+        return content;
     }
 
-    public Long getTime() {
-        return time;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
+
+    public Long getSession_id() {
+        return session_id;
+    }
+
+    public void setSession_id(Long session_id) {
+        this.session_id = session_id;
     }
 
     @Override
     public String toString() {
         return "Message{" +
-                "type=" + type +
-                ", encode=" + encode +
-                ", enzip=" + enzip +
-                ", length=" + length +
+                "id=" + id +
+                ", type=" + type +
                 ", msg_id=" + msg_id +
-                ", time=" + time +
-                ", content=" + content +
-                '}';
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", create_time='" + create_time + '\'' +
+                ", time_long=" + time_long +
+                "content='" + content + '\'' +
+                ", session_id=" + session_id +
+                "} ";
     }
 }

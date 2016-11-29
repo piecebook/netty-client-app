@@ -24,7 +24,7 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
                 case WRITER_IDLE:
                     Message ping = new Message();
                     ping.setType(PBCONSTANT.PING_FLAG);
-                    ping.setParam("s_uid", PBCONSTANT.user);
+                    ping.setSender(PBCONSTANT.user);
                     ping.setMsg_id(System.currentTimeMillis());
                     ctx.channel().writeAndFlush(ping);
                     break;
@@ -54,11 +54,12 @@ public class clientHandler extends SimpleChannelInboundHandler<Message> {
         Message reply = null;
         switch (msg.getType()) {
             case PBCONSTANT.LOGIN_REPLY_FLAG:
-                String result = msg.get("st");
+                //TODO : 登录结果分析
+                String result = msg.getContent();
                 if (result.equals("sc")) {
                     System.out.println("Login Success!");
-                    PBCONSTANT.id = msg.get("id");
-                    PBCONSTANT.user = msg.get("r_uid");
+                    PBCONSTANT.id = msg.getContent();
+                    PBCONSTANT.user = msg.getReceiver();
                     PBCONSTANT.flag = 1;
                 } else if (result.equals("unfound")) {
                     PBCONSTANT.flag = -1;

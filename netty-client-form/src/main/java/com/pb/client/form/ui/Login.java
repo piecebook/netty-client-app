@@ -1,8 +1,8 @@
 package com.pb.client.form.ui;
 
+import com.pb.client.sdk.callback.SendMsgCallbalk;
 import com.pb.client.sdk.model.MsgPipe;
 import com.pb.server.constant.PBCONSTANT;
-import com.pb.server.model.Message;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -26,15 +26,17 @@ public class Login {
                 String uid_value = uid.getText();
                 String pwd_value = pwd.getText();
 
-                Message msg = new Message();
+                MsgPipe.getInstance().sendMsg(PBCONSTANT.SYSTEM, 0L, PBCONSTANT.LOGIN_FLAG, pwd_value, new SendMsgCallbalk() {
+                    @Override
+                    public void onSuccess() {
 
-                msg.setType(PBCONSTANT.LOGIN_FLAG);
-                msg.setMsg_id(System.currentTimeMillis());
-                msg.setParam("s_uid", uid_value);
-                msg.setParam("pwd", pwd_value);
-                msg.setParam("r_uid", PBCONSTANT.SYSTEM);
+                    }
 
-                MsgPipe.sendMsg(msg);
+                    @Override
+                    public void onError(Integer errorcode) {
+
+                    }
+                });
             }
         });
     }

@@ -19,15 +19,15 @@ public class MsgResendDeamon implements Runnable {
         List<Message> resend_list = new ArrayList<>();
         List<Message> fail_messages = new ArrayList<>();
         for (int i = 0; i < send_msg.length; i++) {
-            if (send_msg[i].getTime() < current_time_45s_before)//45s 之前的消息 视为 发送失败
+            if (send_msg[i].getTime_long() < current_time_45s_before)//45s 之前的消息 视为 发送失败
                 fail_messages.add(send_msg[i]);
-            else if (send_msg[i].getTime() < current_time_15s_before)//15s 之前的消息，等待ack超时，重发
+            else if (send_msg[i].getTime_long() < current_time_15s_before)//15s 之前的消息，等待ack超时，重发
                 resend_list.add(send_msg[i]);
         }
 
         if (!resend_list.isEmpty()) {
             for (Message msg : resend_list) {
-                MsgPipe.getInstance().sendMsg(msg.get("r_uid"), Long.valueOf(msg.get("sid")), msg.getType(), msg.get("msg"), MsgPipe.getInstance().getMsgCallbalkMap().get(msg.getMsg_id()));
+                MsgPipe.getInstance().sendMsg(msg.getReceiver(), Long.valueOf(msg.getSession_id()), msg.getType(), msg.getContent(), MsgPipe.getInstance().getMsgCallbalkMap().get(msg.getMsg_id()));
             }
         }
         if (!fail_messages.isEmpty()) {
